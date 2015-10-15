@@ -15,19 +15,28 @@ update gsx with the new tag.
 5. **update gsx with new tag**
 
 
-## steps for updating regression data.
+## Steps for updating regression data.
 
 1. On your gsx-vm as user vagrant.  checkout the master branch of this project located in the `/projects/PMESDR/vagrant/gsx_regression` directory into `~/gsx_regression`.
+
 2. Make sure gsx-vm's gsx project is upto date with the latest code you want to create regression data for and checked out into `~/gsx`
+
 3. Check to make sure any data that you have generated has the expected differences with the current regression data.
-   ```fab.regression.regression```
+    ```fab.regression.regression```
+
 4. regenerate regresssion data
-   ```fab regression.regenerate_regression_data```
+    ```fab regression.regenerate_regression_data```
+
 5. Test it:
-```fab regression.do_regression:source_dir=~/gsx_regression/data/input/,expected_dir=~/gsx/regenerated-data```
+     ```fab regression.do_regression:source_dir=~/gsx_regression/data/input/,expected_dir=~/gsx/regenerated-data```
+
 6. Move the data into the local `~/gsx_regression` project
-```fab regression.relocate_regenerated:old_root=~/gsx_regression/data/expected/```
+     ```fab regression.relocate_regenerated:old_root=~/gsx_regression/data/expected/```
+
 7. You will probably have to prune files that didn't change, but only their times.  aka, AMSRE files if only SSMI changes were introduced.
+
 8. Checkin the new files.
+
 9. Tag the project.
+
 10. push it all.
